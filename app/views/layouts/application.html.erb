@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TechTalentBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class= 'navbar navbar-default'>
+      <div class= 'container-fluid'>
+        <div class="navbar-header">
+          <%= link_to 'Blog-aLots', 'index', class: 'navbar-brand' %>
+        </div>
+
+        <div class='pull-right'>
+          <% if user_signed_in? %>
+          <div class = avatar>
+            <%= image_tag current_user.avatar %>
+          </div>
+            <%= current_user.username %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class = 'container'>
+      <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </body>
+</html>
